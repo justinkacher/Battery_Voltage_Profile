@@ -33,10 +33,12 @@ start_time = time.time()
 if use_keithley_load:
     keithley.current_output_on(current_load)
 i = 0
-while voltage[i-1] > 2:
+while voltagearr[i-1] > 2:
+    voltage = keithley.get_voltage(20)
     timearr.append(time.time()-start_time)
-    voltagearr.append(keithley.get_voltage(20))
+    voltagearr.append(voltage)
     curr_loadarr.append(current_load)
+    powerarr.append(voltage*current_load)
     i+=1
     savedata()
     time.sleep(5)
