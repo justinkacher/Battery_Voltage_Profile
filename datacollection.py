@@ -21,19 +21,21 @@ df.to_excel(path+"CC_discharge_"+str(batteryID)+".xlsx")
 
 def savedata():
     df = pd.DataFrame(data = datadict)
-    with pd.ExcelWriter(path+"CC_discharge_"+str(batteryID)+".xlsx",mode="a",engine="openpyxl",if_sheet_exists="overlay") as writer:
-        df.to_excel(writer, sheet_name="Sheet1",header=None, startrow=writer.sheets["Sheet1"].max_row,index=False)
+    df.to_excel(path+"CC_discharge_"+str(batteryID)+".xlsx")
 
 
 
 start_time = time.time()
-
+timearr.append(0)
+voltagearr.append(keithley.get_voltage(20))
+curr_loadarr.append(current_load)
+powerarr.append(0)
 
 
 if use_keithley_load:
     keithley.current_output_on(current_load)
 i = 0
-while voltagearr[i-1] > 2:
+while (voltagearr[i]) > -1:
     voltage = keithley.get_voltage(20)
     timearr.append(time.time()-start_time)
     voltagearr.append(voltage)
@@ -41,6 +43,7 @@ while voltagearr[i-1] > 2:
     powerarr.append(voltage*current_load)
     i+=1
     savedata()
+    print(datadict)
     time.sleep(5)
 
 
