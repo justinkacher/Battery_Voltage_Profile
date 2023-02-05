@@ -5,8 +5,8 @@ import Keithley2450_wrapper.main as keithley    #also initializes connection to 
 
 #Make sure to change TCP_IP in main.py to match keithley address
 #initialization vars
-use_keithley_load = False   #T-uses keithley as current source F-uses external curr load to be set manually
-current_load = 2            #in amps
+use_keithley_load = True   #T-uses keithley as current source F-uses external curr load to be set manually
+current_load = 1            #in amps
 #where the excel dataframe will be saved
 path = ""       #no path will save in folder of program  
 
@@ -35,7 +35,7 @@ powerarr.append(0)
 if use_keithley_load:
     keithley.current_output_on(current_load)
 i = 0
-while (voltagearr[i]) > -1:
+while (voltagearr[i]) > 3:
     voltage = keithley.get_voltage(20)
     timearr.append(time.time()-start_time)
     voltagearr.append(voltage)
