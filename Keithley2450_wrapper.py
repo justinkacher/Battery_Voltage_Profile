@@ -4,7 +4,7 @@ import numpy as np
 from statistics import mean
 
 
-TCP_IP = "169.254.201.87"
+TCP_IP = "169.254.196.111"
 TCP_Port = 5025
 device = socket.socket()
 
@@ -147,5 +147,6 @@ def sense_mode(mode):
         raise Exception("sense_mode() takes 'remote' or 'local' arguments")
 
 lan_connection(TCP_IP)
+print(get_voltage(20))
 
 
