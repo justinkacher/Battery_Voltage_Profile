@@ -33,6 +33,9 @@ def integrate(dataframe):
 
 print(integrate(data))
 print(integrate(data2))
+
+#plot functions
+
 # ax = data.plot(x = 'Time',y = 'Voltage (V)')
 # data2.plot(ax = ax, x='Time',y='Voltage (V)')
 
